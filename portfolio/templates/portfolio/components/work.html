@@ -1,0 +1,23 @@
+<section class="section" id="portfolio">
+        <div class="container text-center">
+            <p class="section-subtitle">What I Did ?</p>
+            <h6 class="section-title mb-6">Work</h6>
+            <!-- row -->
+            <div class="row">
+                {% for work in works %}
+                <div class="col-md-4">
+                    <a href="{{work.link}}" class="portfolio-card">
+                        <img src="{{ work.image.url }}" class="portfolio-card-img"
+                            alt="Rasm yuklanmagan">
+                        <span class="portfolio-card-overlay">
+                            <span class="portfolio-card-caption">
+                                <h4>{{work.title}}</h4>
+                                    <button class="font-weight-normal btn btn-danger">Live Demo</button>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>

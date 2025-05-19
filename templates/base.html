@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Meyawo landing page.">
+    <meta name="author" content="Devcrud">
+    <title>
+      {% block title %}
+      {{title}}
+      {% endblock title %}
+    </title>    <!-- font icons -->
+{% include 'layout/head.html' %}
+
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+<header>
+	{% include 'components/navbar.html' %}
+	{% include 'components/header.html' %}
+</header>
+	<main>
+      {% block main %}
+
+      {% endblock main %}
+    </main>
+	<footer>
+      {% include "components/footer.html" %}
+    </footer>
+{% include 'layout/script.html' %}
+
+</body>
+
+</html>
