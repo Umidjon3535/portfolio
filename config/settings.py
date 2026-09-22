@@ -101,9 +101,9 @@ USE_TZ = True
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
-STATICFILES_DIRS = [
-    BASE_DIR / 'portfolio' / 'static',
-]
+
+_extra_static = BASE_DIR / 'portfolio' / 'static'
+STATICFILES_DIRS = [_extra_static] if _extra_static.exists() else []
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
