@@ -10,8 +10,8 @@ __pycache__/
 local_settings.py
 # db.sqlite3 - included for Vercel deployment (read-only data)
 
-# Media files
-media/
+# Media files - included for Vercel deployment
+# media/
 
 # Static collected files (only the collectstatic output folder)
 staticfiles/
