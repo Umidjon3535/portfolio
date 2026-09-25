@@ -105,11 +105,11 @@ h4,
 h5,
 h6 {
     font-weight: 500;
-    font-family: 'Baloo Paaji', cursive;
+    font-family: "Open Sans", sans-serif;
     color: $indigo;
 }
 .my-font {
-    font-family: 'Baloo Paaji', cursive;
+    font-family: "Open Sans", sans-serif;
 }
 p {
     font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1300 - 300)));

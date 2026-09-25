@@ -6,13 +6,15 @@
             <div class="row">
                 {% for work in works %}
                 <div class="col-md-4">
-                    <a href="{{work.link}}" class="portfolio-card">
+                    <a href="{{ work.link|default:'#portfolio' }}" class="portfolio-card"{% if work.link %} target="_blank" rel="noopener"{% endif %}>
+                        {% if work.image %}
                         <img src="{{ work.image.url }}" class="portfolio-card-img"
-                            alt="Rasm yuklanmagan">
+                            alt="{{ work.title }}">
+                        {% endif %}
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
                                 <h4>{{work.title}}</h4>
-                                    <button class="font-weight-normal btn btn-danger">Live Demo</button>
+                                    <span class="font-weight-normal btn btn-danger">Live Demo</span>
                             </span>
                         </span>
                     </a>

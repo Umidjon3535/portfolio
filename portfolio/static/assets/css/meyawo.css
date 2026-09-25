@@ -12,7 +12,7 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-@import url("https://fonts.googleapis.com/css?family=Baloo+Paaji|Open+Sans:300,300i,400,400i,600,600i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i");
 :root {
   --blue: #1e549f;
   --indigo: #695aa6;
@@ -11074,12 +11074,12 @@ a.text-dark:hover, a.text-dark:focus {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  font-family: 'Baloo Paaji', cursive;
+  font-family: "Open Sans", sans-serif;
   color: #695aa6;
 }
 
 .my-font {
-  font-family: 'Baloo Paaji', cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 p {
@@ -11626,7 +11626,7 @@ pre .code {
           align-items: center;
   -webkit-transition: all, 0.3s;
   transition: all, 0.3s;
-  font-family: 'Baloo Paaji', cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {

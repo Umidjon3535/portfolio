@@ -10,3 +10,36 @@
 
     <!-- Meyawo js -->
     <script src="{% static 'assets/js/meyawo.js' %}"></script>
+
+    <!-- footer year: always the visitor's current year -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- toast notifications -->
+    <script>
+        document.querySelectorAll('.site-toast').forEach(function (toast) {
+            function hide() {
+                toast.classList.add('is-hiding');
+                setTimeout(function () { toast.remove(); }, 300);
+            }
+            toast.querySelector('.site-toast__close').addEventListener('click', hide);
+            setTimeout(hide, 4000);
+        });
+    </script>
+
+    <!-- header typewriter effect -->
+    <script>
+        document.querySelectorAll('.typewriter').forEach(function (el) {
+            var text = el.dataset.text, i = 0, deleting = false;
+            el.textContent = '';
+            (function tick() {
+                i += deleting ? -1 : 1;
+                el.textContent = text.slice(0, i);
+                var delay = deleting ? 50 : 120;
+                if (!deleting && i === text.length) { deleting = true; delay = 1800; }
+                else if (deleting && i === 0) { deleting = false; delay = 500; }
+                setTimeout(tick, delay);
+            })();
+        });
+    </script>

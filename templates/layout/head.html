@@ -1,7 +1,21 @@
 {% load static %}
 
-<!-- Favicon -->
-    <link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/css/themify-icons.css' %}">
+<link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/css/themify-icons.css' %}">
     <!-- Bootstrap + Meyawo main styles -->
     <link rel="stylesheet" href="{% static 'assets/css/meyawo.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .typewriter-cursor { display: inline-block; margin-left: 2px; animation: typewriter-blink .8s step-end infinite; }
+    @keyframes typewriter-blink { 50% { opacity: 0; } }
+
+    .toast-stack { position: fixed; top: 90px; right: 20px; z-index: 1080; display: flex; flex-direction: column; gap: 10px; max-width: calc(100% - 40px); }
+    .site-toast { display: flex; align-items: center; gap: 12px; width: 340px; max-width: 100%; padding: 14px 16px; background: #fff; border-radius: 8px; border-left: 4px solid #695aa6; box-shadow: 0 8px 24px rgba(0, 0, 0, .15); color: #333; font-size: 15px; animation: toast-in .35s ease-out; transition: opacity .3s, transform .3s; }
+    .site-toast--error { border-left-color: #dc3545; }
+    .site-toast.is-hiding { opacity: 0; transform: translateX(30px); }
+    .site-toast__icon { flex-shrink: 0; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 50%; color: #fff; background: #695aa6; font-size: 13px; }
+    .site-toast--error .site-toast__icon { background: #dc3545; }
+    .site-toast__text { flex: 1; }
+    .site-toast__close { flex-shrink: 0; border: 0; background: none; color: #999; font-size: 22px; line-height: 1; cursor: pointer; padding: 0 2px; }
+    .site-toast__close:hover { color: #333; }
+    @keyframes toast-in { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: none; } }
+</style>

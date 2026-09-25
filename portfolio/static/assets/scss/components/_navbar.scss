@@ -7,7 +7,7 @@
     @include flex;
     align-items: center;    
     @include transition(all,.3s);
-    font-family: 'Baloo Paaji', cursive;
+    font-family: "Open Sans", sans-serif;
 
     .logo { 
         font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1300 - 300)));

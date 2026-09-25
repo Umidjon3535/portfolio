@@ -3,16 +3,20 @@
         <div class="container text-center">
             <!-- about wrapper -->
             <div class="about">
+                {% if abouts.0.image %}
                 <div class="about-img-holder">
                     <img src="{{ abouts.0.image.url }}" class="about-img"
                         alt="{{ abouts.0.title }}">
                 </div>
+                {% endif %}
                 {% for about in abouts %}
                 <div class="about-caption">
                     <p class="section-subtitle">Who Am I ?</p>
                     <h2 class="section-title mb-3">{{about.title}}</h2>
-                    <p>{{about.description}}</p>
-                    <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
+                    <p>{{ about.description|linebreaksbr }}</p>
+                    {% if about.cv %}
+                    <a href="{{ about.cv.url }}" class="btn-rounded btn btn-outline-primary mt-4" download>Download CV</a>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div><!-- end of about wrapper -->

@@ -1,39 +1,66 @@
-from django.http import HttpResponse
-from django.views.generic import ListView
+import logging
 
-from portfolio.models import *
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.db import DatabaseError
+from django.shortcuts import redirect
+from django.views.generic import TemplateView
+
+from portfolio.forms import ContactForm
+from portfolio.models import AboutMe, Skill, UserName, Work
+
+logger = logging.getLogger(__name__)
 
 
-class Index(ListView):
-    model = UserName
-    context_object_name = "data"
+def send_contact_email(data):
+    if not settings.EMAIL_HOST_PASSWORD:
+        return False
+    email = EmailMessage(
+        subject=f"Portfolio: {data['name']} dan yangi xabar",
+        body=f"Ism: {data['name']}\nEmail: {data['email']}\n\n{data['message']}",
+        to=[settings.CONTACT_EMAIL],
+        reply_to=[data['email']],
+    )
+    try:
+        email.send()
+    except Exception:
+        logger.exception("Kontakt xabarini emailga yuborib bo'lmadi")
+        return False
+    return True
+
+
+class Index(TemplateView):
     template_name = 'portfolio/index.html'
     extra_context = {
-        "title":"Porfolio"
+        "title": "Portfolio"
     }
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        usernames = UserName.objects.all()
-        abouts = AboutMe.objects.all()
-        skills = Skill.objects.all()
-        works = Work.objects.all()
-        data = {}
-        context['usernames'] = usernames
-        context['abouts'] = abouts
-        context['skills'] = skills
-        context['works'] = works
-        context['data'] = data
+        context['usernames'] = UserName.objects.all()
+        context['abouts'] = AboutMe.objects.all()
+        context['skills'] = Skill.objects.all()
+        context['works'] = Work.objects.all()
+        context.setdefault('form', ContactForm())
         return context
 
-    # Shu yerga POST metodini qo'shamiz, Index klassining ichida
     def post(self, request, *args, **kwargs):
-        contact = Contact()
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        massage = request.POST.get('massage')
-        contact.name = name
-        contact.email = email
-        contact.massage = massage
-        contact.save()
-        return HttpResponse("Contact saved successfully")
+        form = ContactForm(request.POST)
+        if not form.is_valid():
+            return self.render_to_response(self.get_context_data(form=form))
+
+        try:
+            form.save()
+            saved = True
+        except DatabaseError:
+            # Vercel'da SQLite faqat o'qish uchun, yozib bo'lmaydi
+            logger.exception("Kontakt xabarini bazaga saqlab bo'lmadi")
+            saved = False
+        sent = send_contact_email(form.cleaned_data)
+
+        if saved or sent:
+            messages.success(request, "Xabaringiz uchun rahmat! Tez orada javob beraman.")
+        else:
+            messages.error(request, "Xabarni yuborib bo'lmadi. Iltimos, keyinroq urinib ko'ring.")
+        return redirect('/#contact')

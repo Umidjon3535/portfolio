@@ -1,0 +1,11 @@
+{% if messages %}
+<div class="toast-stack">
+    {% for message in messages %}
+    <div class="site-toast site-toast--{% if message.tags == 'error' %}error{% else %}success{% endif %}" role="status">
+        <i class="{% if message.tags == 'error' %}ti-alert{% else %}ti-check{% endif %} site-toast__icon"></i>
+        <span class="site-toast__text">{{ message }}</span>
+        <button type="button" class="site-toast__close" aria-label="Close">&times;</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

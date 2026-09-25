@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Meyawo landing page.">
-    <meta name="author" content="Devcrud">
+    <meta name="description" content="{{ usernames.0.name }} - {{ usernames.0.title }} developer portfolio">
+    <meta name="author" content="{{ usernames.0.name }}">
     <title>
       {% block title %}
       {{title}}
@@ -15,21 +15,18 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<body data-spy="scroll" data-target=".custom-navbar" data-offset="40">
 
     <!-- Page Navbar -->
-<header>
-	{% include 'components/navbar.html' %}
-	{% include 'components/header.html' %}
-</header>
+{% include 'components/navbar.html' %}
+{% include 'components/header.html' %}
 	<main>
       {% block main %}
 
       {% endblock main %}
     </main>
-	<footer>
-      {% include "components/footer.html" %}
-    </footer>
+    {% include "components/footer.html" %}
+    {% include "components/toasts.html" %}
 {% include 'layout/script.html' %}
 
 </body>
