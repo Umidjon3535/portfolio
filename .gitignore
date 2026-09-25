@@ -34,3 +34,9 @@ Thumbs.db
 # Environment variables
 .env
 .env.*
+
+# Vercel CLI
+.vercel
+
+.vercel
+.env*
